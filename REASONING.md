@@ -33,7 +33,7 @@ The `car` retrieves the first element of a list. Since `'()` represents an empty
 The `cons` function combines an element with a list. The value 1 is added to the list (2 3), producing (1 2 3). Therefore, the expression returns a list containing three elements, with a length of 3 and a function as its operator.
 
 ## P08
-Replace this line with the rule behind this case's four fields.
+The `if` special operator evaluates the condition `(null '())`, which returns `T` because the quoted empty list is `nil`. Since the condition is true, it evaluates and returns `'empty`, which is a quoted symbol. Therefore, the value is the symbol `empty`, with no length since its not a list or `nil`, and its operator is classified as a special operator because its the `if` statement.
 
 ## P09
 Replace this line with the rule behind this case's four fields.
