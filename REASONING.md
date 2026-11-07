@@ -27,7 +27,7 @@ Based on the grader notation its written as `nil`. nil has the Common Lisp data 
 The symbolp function checks whether its argument is a symbol. Since nil is a valid symbol in Common Lisp, `symbolp nil` evaluates to T. Therefore, the expression returns T, with the value classified as a symbol, no length, and a function `symobolp` as its operator.
 
 ## P06
-Replace this line with the rule behind this case's four fields.
+The `car` retrieves the first element of a list. Since `'()` represents an empty list, (car '()) evaluates to nil. Therefore, the expression returns nil, which is classified as a null, has 0 length, and uses a function as its operator.
 
 ## P07
 Replace this line with the rule behind this case's four fields.
