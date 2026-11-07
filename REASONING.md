@@ -39,7 +39,8 @@ The `if` special operator evaluates the condition `(null '())`, which returns `T
 Since the and evaluates its arguments sequentially and stops when it encounters nil, it returns `nil` without evaluating the remaining expression, otherwise it will return `t`. The resulting value is `nil`, which has no length 0 and is classified as null. According to common lisp the `and` operator is a macro.
 
 ## P10
-Replace this line with the rule behind this case's four fields.
+The `let` expression creates a temporary dynamic binding of the special variable `*ps3-rate*` to `10`. When `(ps3-scale 3)` is called, the function multiplies `3` by the current dynamically bound value of `*ps3-rate*`, which is `10`, producing `30`. The result is therefore an integer (`30`), with no length value, and its operator is classified as a special operator because the expression uses `cons`/`let` special-form evaluation.
+
 
 ## P11
 Replace this line with the rule behind this case's four fields.

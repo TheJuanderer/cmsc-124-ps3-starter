@@ -8,7 +8,7 @@ P06	nil	null	0	function
 P07	(1 2 3)	list	3	function
 P08	empty	symbol	none	special-operator
 P09	nil	null	0	macro
-P10	TODO	TODO	TODO	TODO
+P10	30	integer	none	special-operator
 P11	TODO	TODO	TODO	TODO
 P12	TODO	TODO	TODO	TODO
 P13	TODO	TODO	TODO	TODO
