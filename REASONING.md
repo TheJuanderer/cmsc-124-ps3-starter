@@ -47,7 +47,7 @@ Since the right side is quoted, this evaluate the `defun` expression, and it ret
 
 
 ## P12
-Replace this line with the rule behind this case's four fields.
+The `labels` special operator defines a local recursive function named `down`, which generates a list of numbers by repeatedly decreasing `n` until it reaches 0. The resulting value is a list containing three elements since every recursive function the n is appended at the front, hence `kind` is a `list` and `length` is `3`. The `operator` is `special-operator` because `labels` is a Common Lisp special operator. 
 
 ## P13
 Replace this line with the rule behind this case's four fields.
