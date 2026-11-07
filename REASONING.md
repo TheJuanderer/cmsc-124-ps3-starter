@@ -36,7 +36,7 @@ The `cons` function combines an element with a list. The value 1 is added to the
 The `if` special operator evaluates the condition `(null '())`, which returns `T` because the quoted empty list is `nil`. Since the condition is true, it evaluates and returns `'empty`, which is a quoted symbol. Therefore, the value is the symbol `empty`, with no length since its not a list or `nil`, and its operator is classified as a special operator because its the `if` statement.
 
 ## P09
-Replace this line with the rule behind this case's four fields.
+Since the and evaluates its arguments sequentially and stops when it encounters nil, it returns `nil` without evaluating the remaining expression, otherwise it will return `t`. The resulting value is `nil`, which has no length 0 and is classified as null. According to common lisp the `and` operator is a macro.
 
 ## P10
 Replace this line with the rule behind this case's four fields.
