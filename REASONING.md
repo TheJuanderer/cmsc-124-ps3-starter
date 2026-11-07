@@ -30,7 +30,7 @@ The symbolp function checks whether its argument is a symbol. Since nil is a val
 The `car` retrieves the first element of a list. Since `'()` represents an empty list, (car '()) evaluates to nil. Therefore, the expression returns nil, which is classified as a null, has 0 length, and uses a function as its operator.
 
 ## P07
-Replace this line with the rule behind this case's four fields.
+The `cons` function combines an element with a list. The value 1 is added to the list (2 3), producing (1 2 3). Therefore, the expression returns a list containing three elements, with a length of 3 and a function as its operator.
 
 ## P08
 Replace this line with the rule behind this case's four fields.
