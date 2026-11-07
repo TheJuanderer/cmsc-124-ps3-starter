@@ -12,16 +12,16 @@ wrongly. Say what you predicted, what CLISP printed, and which rule you
 misread. Those entries belong in the correction commits.
 
 ## P01
-The cons function creates a pair containing the string "P01" and the quoted expression (+ 1 (* 2 3)). The expression is evaluated mathematically as 1 + (2 * 3) = 7, giving the value 7 with an integer data type. Since the expression contains no list of multiple elements to determine a length, its length is none. The outer expression uses `+` which is a function, so its operator kind is function. 
+The expression is evaluated mathematically as 1 + (2 * 3) = 7, giving the value 7 with an integer data type. Since the expression contains no list of multiple elements to determine a length, its length is none. The outer expression uses `+` which is a function, so its operator kind is function. 
 
 ## P02
-This creates a pair containing the string "P02" and the right expression has nested quoting (there are two quotes) and this prevents evaluation of the inner quoted expression. When the right expression is evaluated it returns a list since the expression is nested in a quote. Inside the list there are still 3 elements. And the operator is a special-operator since a `quote` based on common lisp is a `special operator`
+When the right expression is evaluated it returns a list since the expression is nested in a quote. Inside the list there are still 3 elements. And the operator is a special-operator since a `quote` based on common lisp is a `special operator`
 
 ## P03
 Based on the grader notation its written as `nil`. nil has the Common Lisp data type NULL. It represents an empty list, which has a length of zero. Under the checker's classification, the resulting value has no applicable operator so the operator is `none`
 
 ## P04
-Replace this line with the rule behind this case's four fields.
+`t` is recognized as a symbol rather than a string or a function call. Therefore, its value is displayed as `t`, its kind is `symbol`, and its length and operator are `none` because it is neither a sequence nor an operation.
 
 ## P05
 Replace this line with the rule behind this case's four fields.
