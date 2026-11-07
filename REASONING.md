@@ -24,7 +24,7 @@ Based on the grader notation its written as `nil`. nil has the Common Lisp data 
 `t` is recognized as a symbol rather than a string or a function call. Therefore, its value is displayed as `t`, its kind is `symbol`, and its length and operator are `none` because it is neither a sequence nor an operation.
 
 ## P05
-Replace this line with the rule behind this case's four fields.
+The symbolp function checks whether its argument is a symbol. Since nil is a valid symbol in Common Lisp, `symbolp nil` evaluates to T. Therefore, the expression returns T, with the value classified as a symbol, no length, and a function `symobolp` as its operator.
 
 ## P06
 Replace this line with the rule behind this case's four fields.
