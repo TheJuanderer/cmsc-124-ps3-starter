@@ -43,7 +43,8 @@ The `let` expression creates a temporary dynamic binding of the special variable
 
 
 ## P11
-Replace this line with the rule behind this case's four fields.
+Since the right side is quoted, this evaluate the `defun` expression, and it returns `ps3-twice` since its the function name. Its kind is therefore `symbol`, its length is `none` because the return value is not a sequence, and its operator type is `macro` because `defun` is a macro in Common Lisp.
+
 
 ## P12
 Replace this line with the rule behind this case's four fields.
