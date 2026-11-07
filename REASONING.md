@@ -18,7 +18,7 @@ The cons function creates a pair containing the string "P01" and the quoted expr
 This creates a pair containing the string "P02" and the right expression has nested quoting (there are two quotes) and this prevents evaluation of the inner quoted expression. When the right expression is evaluated it returns a list since the expression is nested in a quote. Inside the list there are still 3 elements. And the operator is a special-operator since a `quote` based on common lisp is a `special operator`
 
 ## P03
-Replace this line with the rule behind this case's four fields.
+Based on the grader notation its written as `nil`. nil has the Common Lisp data type NULL. It represents an empty list, which has a length of zero. Under the checker's classification, the resulting value has no applicable operator so the operator is `none`
 
 ## P04
 Replace this line with the rule behind this case's four fields.
