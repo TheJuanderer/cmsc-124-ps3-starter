@@ -12,7 +12,7 @@ wrongly. Say what you predicted, what CLISP printed, and which rule you
 misread. Those entries belong in the correction commits.
 
 ## P01
-Replace this line with the rule behind this case's four fields.
+The cons function creates a pair containing the string "P01" and the quoted expression (+ 1 (* 2 3)). The expression is evaluated mathematically as 1 + (2 * 3) = 7, giving the value 7 with an integer data type. Since the expression contains no list of multiple elements to determine a length, its length is none. The outer expression uses `+` which is a function, so its operator kind is function. 
 
 ## P02
 Replace this line with the rule behind this case's four fields.
