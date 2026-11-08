@@ -22,12 +22,16 @@
 ;;; E1 -- numbers and symbols.
 
 (defun lookup (name env)
+  (let ((binding (assoc name env)))
+    (if binding
+        (cdr binding)
+        (error "unbound variable: ~S" name)))
+)
   "The value NAME is bound to in ENV.
 
 The first match wins, so an inner binding shadows an outer one that shares its
 name. Signal an error when NAME is not bound at all."
-  (declare (ignore name env))
-  (error "lookup is not implemented"))
+  
 
 ;;; E2 -- prefix arithmetic.
 
@@ -91,5 +95,22 @@ CLOSURE is not a closure, and when the argument count does not match."
 
 Order the branches with care. NIL is a symbol as well as the empty list, and a
 number is not a cons, so the atom tests come before the list tests."
-  (declare (ignore expr env))
-  (error "eval-expr is not implemented"))
+  (cond
+    ((null expr) "null")
+    ((numberp expr) expr) 
+    ((symbolp expr) (lookup env))
+    ((consp expr)
+      (case (first expr)
+        ((+ - *) (eval-operands expr env))      ; call evaluate-operands, then apply-op
+        (let    (eval-let expr env))    ; call eval-let
+        (lambda  (make-closure (second expr) (third expr) env))  ; make-closure
+        (t (apply-closure (eval-expr (first expr) env)
+            (eval-operands (rest expr) env))
+        )
+      )
+    )
+    (t (error "bad expression: ~S" expr))                   
+  )
+)
+
+  
