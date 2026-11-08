@@ -53,7 +53,7 @@ The `labels` special operator defines a local recursive function named `down`, w
 The mapcar function applies the length function to each element of the list '((1 2) () (3)). The sublists have lengths 2, 0 (since () is the empty list), and 1, which collects into the list (2,0,1). The result is a cons with a length of 3. The outermost operator is mapcar, which is a function.
 
 ## P14
-Replace this line with the rule behind this case's four fields.
+The mapcar function applies the anonymous lambda function (lambda (n) (* n n)) to each element of the list '(1 2 3), squaring each number to produce (1,4,9). The result is a cons with a length of 3, and the outermost operator is mapcar, which is a function.
 
 ## P15
 Replace this line with the rule behind this case's four fields.
