@@ -50,7 +50,7 @@ Since the right side is quoted, this evaluate the `defun` expression, and it ret
 The `labels` special operator defines a local recursive function named `down`, which generates a list of numbers by repeatedly decreasing `n` until it reaches 0. The resulting value is a list containing three elements since every recursive function the n is appended at the front, hence `kind` is a `list` and `length` is `3`. The `operator` is `special-operator` because `labels` is a Common Lisp special operator. 
 
 ## P13
-Replace this line with the rule behind this case's four fields.
+The mapcar function applies the length function to each element of the list '((1 2) () (3)). The sublists have lengths 2, 0 (since () is the empty list), and 1, which collects into the list (2,0,1). The result is a cons with a length of 3. The outermost operator is mapcar, which is a function.
 
 ## P14
 Replace this line with the rule behind this case's four fields.
