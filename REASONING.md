@@ -59,4 +59,4 @@ The mapcar function applies the anonymous lambda function (lambda (n) (* n n)) t
 The lambda form evaluates to a function object, represented in grader notation as #<function>. The kind is function and the length is none because it is not a sequence. The outermost operator is lambda, which the manual classifies as a macro in Common Lisp.
 
 ## P16
-Replace this line with the rule behind this case's four fields.
+The let creates a lexical binding for factor equal to 2. When the lambda is defined, it captures this lexical environment. Although a later let binds factor to 10, the closure f ignores this and uses the captured 2, so (funcall f 3) returns 3 * 2 = 6. The value is the integer 6, with length as none and the operator as none because the evaluated result is an atom, not a compound form.
