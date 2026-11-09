@@ -56,7 +56,7 @@ The mapcar function applies the length function to each element of the list '((1
 The mapcar function applies the anonymous lambda function (lambda (n) (* n n)) to each element of the list '(1 2 3), squaring each number to produce (1,4,9). The result is a cons with a length of 3, and the outermost operator is mapcar, which is a function.
 
 ## P15
-Replace this line with the rule behind this case's four fields.
+The lambda form evaluates to a function object, represented in grader notation as #<function>. The kind is function and the length is none because it is not a sequence. The outermost operator is lambda, which the manual classifies as a macro in Common Lisp.
 
 ## P16
 Replace this line with the rule behind this case's four fields.
