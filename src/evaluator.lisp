@@ -55,16 +55,19 @@ OP is the symbol +, -, or *. Signal an error for anything else."
 
 MAPCAR takes two lists and #'CONS pairs them. Build a new list. Do not modify
 ENV, because the caller keeps using it after the extension goes out of scope."
-  (declare (ignore params args env))
-  (error "extend-env is not implemented"))
+  (append (mapcar #'cons params args) env))
 
 (defun eval-let (expr env)
   "Evaluate (let ((name init) ...) body).
 
 Every init is evaluated in ENV before any name is bound, so the bindings happen
 in parallel and an init cannot see a name the same LET introduces."
-  (declare (ignore expr env))
-  (error "eval-let is not implemented"))
+  (let* ((bindings (second expr))
+         (body     (third expr))
+         (names    (mapcar #'first bindings))
+         (inits    (mapcar #'second bindings)))
+    ;; Inits are evaluated in ENV (not the extended one), so bindings are parallel.
+    (eval-expr body (extend-env names (eval-operands inits env) env))))
 
 ;;; E4 -- lambda and application.
 
