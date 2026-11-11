@@ -98,7 +98,15 @@ number is not a cons, so the atom tests come before the list tests."
     ((symbolp expr) (lookup expr env))
     ((consp expr)
      (let ((op (first expr)))
-       (if (member op '(+ - *))
-           (apply-op op (eval-operands (rest expr) env))
-           (error "Unsupported expression form: ~a" expr))))
+      (cond
+         ((member op '(+ - *))
+          (apply-op op (eval-operands (rest expr) env)))
+         ((eq op 'let)
+          (eval-let expr env))
+         ((eq op 'lambda)
+          (make-closure (second expr) (third expr) env))
+         (t
+          ;; Application: evaluate the operator expression, then the operands.
+          (apply-closure (eval-expr op env)
+                         (eval-operands (rest expr) env))))))
     (t (error "Unknown expression: ~a" expr))))
