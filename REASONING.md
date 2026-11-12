@@ -17,6 +17,9 @@ The expression is evaluated mathematically as 1 + (2 * 3) = 7, giving the value 
 ## P02
 When the right expression is evaluated it returns a list since the expression is nested in a quote. Inside the list there are still 3 elements. And the operator is a special-operator since a `quote` based on common lisp is a `special operator`
 
+### Correction:
+The list is `(+,1,2)` and not `(+ 1 2)` based on graders notation
+
 ## P03
 Based on the grader notation its written as `nil`. nil has the Common Lisp data type NULL. It represents an empty list, which has a length of zero. Under the checker's classification, the resulting value has no applicable operator so the operator is `none`
 
@@ -31,6 +34,9 @@ The `car` retrieves the first element of a list. Since `'()` represents an empty
 
 ## P07
 The `cons` function combines an element with a list. The value 1 is added to the list (2 3), producing (1 2 3). Therefore, the expression returns a list containing three elements, with a length of 3 and a function as its operator.
+
+### Correction:
+The list is `(1,2,3)` and not `(1 2 3)` based on graders notation
 
 ## P08
 The `if` special operator evaluates the condition `(null '())`, which returns `T` because the quoted empty list is `nil`. Since the condition is true, it evaluates and returns `'empty`, which is a quoted symbol. Therefore, the value is the symbol `empty`, with no length since its not a list or `nil`, and its operator is classified as a special operator because its the `if` statement.
