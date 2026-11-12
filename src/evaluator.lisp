@@ -26,8 +26,10 @@
 
 The first match wins, so an inner binding shadows an outer one that shares its
 name. Signal an error when NAME is not bound at all."
-  (declare (ignore name env))
-  (error "lookup is not implemented"))
+  (let ((binding (assoc name env)))
+    (if binding
+        (cdr binding)
+        (error "Unbound variable: ~a" name))))
 
 ;;; E2 -- prefix arithmetic.
 
@@ -36,15 +38,15 @@ name. Signal an error when NAME is not bound at all."
 
 MAPCAR and a LAMBDA do this in one line. Watch the arity: EVAL-EXPR takes two
 arguments and MAPCAR hands its function one."
-  (declare (ignore exprs env))
-  (error "eval-operands is not implemented"))
+  (mapcar (lambda (expr) (eval-expr expr env)) exprs))
 
 (defun apply-op (op values)
   "Apply the arithmetic operator OP to the two numbers in VALUES.
 
 OP is the symbol +, -, or *. Signal an error for anything else."
-  (declare (ignore op values))
-  (error "apply-op is not implemented"))
+  (unless (and (member op '(+ - *)) (= (length values) 2))
+    (error "Unknown operator or bad arity: ~a" op))
+  (apply op values))
 
 ;;; E3 -- let.
 
@@ -53,16 +55,19 @@ OP is the symbol +, -, or *. Signal an error for anything else."
 
 MAPCAR takes two lists and #'CONS pairs them. Build a new list. Do not modify
 ENV, because the caller keeps using it after the extension goes out of scope."
-  (declare (ignore params args env))
-  (error "extend-env is not implemented"))
+  (append (mapcar #'cons params args) env))
 
 (defun eval-let (expr env)
   "Evaluate (let ((name init) ...) body).
 
 Every init is evaluated in ENV before any name is bound, so the bindings happen
 in parallel and an init cannot see a name the same LET introduces."
-  (declare (ignore expr env))
-  (error "eval-let is not implemented"))
+  (let* ((bindings (second expr))
+         (body     (third expr))
+         (names    (mapcar #'first bindings))
+         (inits    (mapcar #'second bindings)))
+    ;; Inits are evaluated in ENV (not the extended one), so bindings are parallel.
+    (eval-expr body (extend-env names (eval-operands inits env) env))))
 
 ;;; E4 -- lambda and application.
 
@@ -73,16 +78,22 @@ Return the list (:closure params body env). ENV is the environment the lambda
 was written in, not the one it will later be called from. Saving the wrong one
 is what makes the difference between 3 and 101 in the case the manual walks
 through."
-  (declare (ignore params body env))
-  (error "make-closure is not implemented"))
+  (list :closure params body env))
 
 (defun apply-closure (closure args)
   "Run CLOSURE on ARGS.
 
 The parameters join the environment the closure captured. Signal an error when
 CLOSURE is not a closure, and when the argument count does not match."
-  (declare (ignore closure args))
-  (error "apply-closure is not implemented"))
+  (unless (and (listp closure)
+               (= (length closure) 4)
+               (eq (first closure) :closure)
+               (listp (second closure))
+               (listp args)
+               (= (length (second closure)) (length args)))
+    (error "Not a closure or wrong argument count: ~a" closure))
+  (eval-expr (third closure)
+             (extend-env (second closure) args (fourth closure))))
 
 ;;; The dispatcher.
 
@@ -91,5 +102,20 @@ CLOSURE is not a closure, and when the argument count does not match."
 
 Order the branches with care. NIL is a symbol as well as the empty list, and a
 number is not a cons, so the atom tests come before the list tests."
-  (declare (ignore expr env))
-  (error "eval-expr is not implemented"))
+  (cond
+    ((numberp expr) expr)
+    ((symbolp expr) (lookup expr env))
+    ((consp expr)
+     (let ((op (first expr)))
+      (cond
+         ((member op '(+ - *))
+          (apply-op op (eval-operands (rest expr) env)))
+         ((eq op 'let)
+          (eval-let expr env))
+         ((eq op 'lambda)
+          (make-closure (second expr) (third expr) env))
+         (t
+          ;; Application: evaluate the operator expression, then the operands.
+          (apply-closure (eval-expr op env)
+                         (eval-operands (rest expr) env))))))
+    (t (error "Unknown expression: ~a" expr))))
