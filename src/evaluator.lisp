@@ -78,16 +78,22 @@ Return the list (:closure params body env). ENV is the environment the lambda
 was written in, not the one it will later be called from. Saving the wrong one
 is what makes the difference between 3 and 101 in the case the manual walks
 through."
-  (declare (ignore params body env))
-  (error "make-closure is not implemented"))
+  (list :closure params body env))
 
 (defun apply-closure (closure args)
   "Run CLOSURE on ARGS.
 
 The parameters join the environment the closure captured. Signal an error when
 CLOSURE is not a closure, and when the argument count does not match."
-  (declare (ignore closure args))
-  (error "apply-closure is not implemented"))
+  (unless (and (listp closure)
+               (= (length closure) 4)
+               (eq (first closure) :closure)
+               (listp (second closure))
+               (listp args)
+               (= (length (second closure)) (length args)))
+    (error "Not a closure or wrong argument count: ~a" closure))
+  (eval-expr (third closure)
+             (extend-env (second closure) args (fourth closure))))
 
 ;;; The dispatcher.
 
