@@ -50,13 +50,13 @@ Since the right side is quoted, this evaluate the `defun` expression, and it ret
 The `labels` special operator defines a local recursive function named `down`, which generates a list of numbers by repeatedly decreasing `n` until it reaches 0. The resulting value is a list containing three elements since every recursive function the n is appended at the front, hence `kind` is a `list` and `length` is `3`. The `operator` is `special-operator` because `labels` is a Common Lisp special operator. 
 
 ## P13
-Replace this line with the rule behind this case's four fields.
+The mapcar function applies the length function to each element of the list '((1 2) () (3)). The sublists have lengths 2, 0 (since () is the empty list), and 1, which collects into the list (2,0,1). The result is a cons with a length of 3. The outermost operator is mapcar, which is a function.
 
 ## P14
-Replace this line with the rule behind this case's four fields.
+The mapcar function applies the anonymous lambda function (lambda (n) (* n n)) to each element of the list '(1 2 3), squaring each number to produce (1,4,9). The result is a cons with a length of 3, and the outermost operator is mapcar, which is a function.
 
 ## P15
-Replace this line with the rule behind this case's four fields.
+The lambda form evaluates to a function object, represented in grader notation as #<function>. The kind is function and the length is none because it is not a sequence. The outermost operator is lambda, which the manual classifies as a macro in Common Lisp.
 
 ## P16
-Replace this line with the rule behind this case's four fields.
+The let creates a lexical binding for factor equal to 2. When the lambda is defined, it captures this lexical environment. Although a later let binds factor to 10, the closure f ignores this and uses the captured 2, so (funcall f 3) returns 3 * 2 = 6. The value is the integer 6, with length as none and the operator as none because the evaluated result is an atom, not a compound form.
